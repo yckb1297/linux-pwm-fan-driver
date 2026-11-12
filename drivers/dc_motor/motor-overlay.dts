@@ -1,0 +1,39 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+    overlay-name = "SmartFan DC Motor";
+    jetson-header-name = "Jetson 40pin Header";
+
+    compatible = "nvidia,p3768-0000+p3767-0005-super";
+
+    fragment@0 {
+        target = <&pwm5>;
+
+        __overlay__ {
+            status = "okay";
+        };
+    };
+
+    fragment@1 {
+        target-path = "/";
+
+        __overlay__ {
+            motor {
+                compatible = "smartfan,dc-motor";
+                status = "okay";
+
+                /* Motor direction GPIO */
+                /* IN1: Header pin 7, PAC.06 */
+                in1-gpios = <&gpio 166 0>;
+
+                /* IN2: Header pin 15, PN.01 */
+                in2-gpios = <&gpio 105 0>;
+
+                /* PWM5: Header pin 33, 1 kHz */
+                pwms = <&pwm5 0 1000000>;
+                pwm-names = "motor";
+            };
+        };
+    };
+};

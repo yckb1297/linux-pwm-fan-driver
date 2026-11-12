@@ -1,0 +1,18 @@
+# 기본적으로 모든 파일/폴더 무시
+*
+
+# 폴더 자체는 탐색 가능하게 허용
+!*/
+
+# 허용할 확장자
+!*.c
+!*.h
+!*.dts
+
+# Makefile 허용
+!Makefile
+
+# .gitignore 자체는 추적
+!.gitignore
+# README 허용
+!README.md
